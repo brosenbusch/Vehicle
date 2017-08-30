@@ -1,4 +1,4 @@
-let vehicle = function(e,f,g, mpg,d){
+let Vehicle = function(e,f,g, mpg,d){
   let engine = e;
   let fuel = f;
   let gastank = g;
@@ -22,10 +22,14 @@ function fill(percent){
 }
 
 function drive(hours){
-  milesDriven += (hours*averageMPG);
-  fuel -= hours*engineEfficiency();
-  if(fuel <= 0){
-    
+  let fuelburn = hours*engineEfficiency();
+  if(fuelburn<=fuel){
+    milesDriven += (hours*averageMPG);
+    fuel -= hours*engineEfficiency();
+  }
+  else{
+    milesDriven += fuel*averageMPG;
+    fuel = 0;
   }
 }
 
